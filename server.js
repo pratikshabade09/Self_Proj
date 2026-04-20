@@ -6,10 +6,6 @@ app.get('/',(req,res)=>{    //wht to send to user when it reached for certain ro
     res.send('Server runnig');
 });
 
-const port = 3000;
-app.listen(port,()=>{       //listens requests continuously
-    console.log(`Server started at port ${port}`)
-})
 
 app.post('/login',(req,res)=>{          //used post here bcz, login ===security
     const {username,password} = req.body;   //extract data from client
@@ -22,4 +18,62 @@ app.post('/login',(req,res)=>{          //used post here bcz, login ===security
 
 
 const mysql = require('mysql2');
+const db = mysql.createConnection({     //connected node-->sql
+    host:'localhost',
+    user:'root',
+    password:'mysql2',
+    database:'loginDB'
+})
 
+db.connect((err) => {
+    if (err) {
+        console.log('DB error');
+    } else {
+        console.log('DB connected');
+    }
+});
+
+db.query(
+        'SELECT * FROM users WHERE username = ?',
+        [username],
+        (err, results) => {
+
+            if (err) {
+                console.log(err);
+                return res.send("Database error");
+            }
+
+            if (results.length === 0) {
+                return res.send("User not found");
+            }
+
+            const user = results[0];
+
+            console.log("User from DB:", user);
+
+            if (password !== user.passwordHash) {
+                return res.send("Incorrect password");
+            }
+
+            res.send("Login successful (next: session)");
+        }
+    );
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+const port = 3000;
+app.listen(port,()=>{       //listens requests continuously
+    console.log(`Server started at port ${port}`)
+})
