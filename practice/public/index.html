@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Form</title>
+
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #e2e8f0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #1e293b;
+      padding: 30px;
+      border-radius: 12px;
+      width: 400px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #38bdf8;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      background-color: #334155;
+      color: #e2e8f0;
+    }
+
+    input[type="file"] {
+      padding: 5px;
+    }
+
+    textarea {
+      resize: none;
+      height: 70px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #38bdf8;
+      border: none;
+      border-radius: 6px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #0ea5e9;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Upload Your Data</h2>
+
+    <form action="/api/submit" method="POST" enctype="multipart/form-data">
+      
+      <label>Title</label>
+      <input type="text" name="title" />
+
+      <label>Description</label>
+      <textarea name="description"></textarea>
+
+      <label>Image</label>
+      <input type="file" name="image" accept="image/*" />
+
+      <label>PDF</label>
+      <input type="file" name="pdf" accept=".pdf" />
+
+      <label>Document (DOC/DOCX)</label>
+      <input type="file" name="doc" accept=".doc,.docx" />
+
+      <label>Audio</label>
+      <input type="file" name="audio" accept="audio/*" />
+
+      <label>Video</label>
+      <input type="file" name="video" accept="video/*" />
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>
