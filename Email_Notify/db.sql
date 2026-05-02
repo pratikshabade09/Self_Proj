@@ -1,0 +1,10 @@
+CREATE TABLE faculty_reg (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    department VARCHAR(100),
+    subjects JSON, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
